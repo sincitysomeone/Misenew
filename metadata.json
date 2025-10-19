@@ -1,0 +1,5 @@
+{
+  "name": "MISE Project Rulebook AI Explainer",
+  "description": "An interactive web application that displays the MISE Project's core operational rules and uses the Gemini API to provide AI-powered explanations for each rule.",
+  "requestFramePermissions": []
+}
