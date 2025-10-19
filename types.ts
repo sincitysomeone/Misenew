@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface Rule {
   id: string;
   title: string;
@@ -21,4 +23,13 @@ export interface ArchitectureContent {
 export interface ArchitectureSection {
   id: string;
   content: ArchitectureContent[];
+}
+
+// Type for Dashboard Modules
+export interface Module {
+  id: string;
+  title: string;
+  description: string;
+  // Fix: The 'icon' property uses React types which require importing React.
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }

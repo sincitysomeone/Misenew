@@ -1,4 +1,9 @@
-import { RuleSection, ArchitectureSection } from './types';
+import { RuleSection, ArchitectureSection, Module } from './types';
+import CaterFlowIcon from './components/icons/CaterFlowIcon';
+import TeamFlowIcon from './components/icons/TeamFlowIcon';
+import InventoryFlowIcon from './components/icons/InventoryFlowIcon';
+import OnboardingIcon from './components/icons/OnboardingIcon';
+import BillingIcon from './components/icons/BillingIcon';
 
 export const PROJECT_RULES: RuleSection[] = [
   {
@@ -506,4 +511,37 @@ class ToastAdapter(POSAdapter):
       { type: 'paragraph', content: 'Back-End: Google Cloud Run (autoscaling containers)\nDatabase: Firestore (serverless NoSQL)\nAI Model: Vertex AI / Gemini API\niOS App: TestFlight → App Store\nMonitoring: Sentry (errors) + Cloud Logging' },
     ],
   }
+];
+
+export const MODULES: Module[] = [
+    {
+      id: 'caterflow',
+      title: 'CaterFlow',
+      description: 'AI-powered quotes, upsells, and labor cost calculation for catering events.',
+      icon: CaterFlowIcon,
+    },
+    {
+      id: 'teamflow',
+      title: 'TeamFlow',
+      description: 'Optimize labor costs, manage schedules, and get proactive shift suggestions.',
+      icon: TeamFlowIcon,
+    },
+    {
+      id: 'inventoryflow',
+      title: 'InventoryFlow',
+      description: 'Predict waste, monitor stock levels, and calculate COGS in real-time.',
+      icon: InventoryFlowIcon,
+    },
+    {
+      id: 'certiflow',
+      title: 'CertiFlow & PrepFlow',
+      description: 'Standardize team onboarding, training, and daily operational prep.',
+      icon: OnboardingIcon,
+    },
+    {
+      id: 'settingsflow',
+      title: 'SettingsFlow',
+      description: 'Manage billing, integrations, and user permissions across the platform.',
+      icon: BillingIcon,
+    },
 ];

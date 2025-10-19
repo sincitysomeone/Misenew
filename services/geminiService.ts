@@ -73,5 +73,30 @@ ${RAW_ARCHITECTURE_DOCUMENT}
     }
 };
 
+const sendAgentPrompt = async (userPrompt: string): Promise<string> => {
+  try {
+    const ai = getAiClient();
+    const prompt = `You are MiseMentorAgent, the AI core of the Mise restaurant management system. You are speaking to a restaurant manager or owner. Your tone is professional, proactive, and data-driven. You are their indispensable digital partner.
 
-export { getExplanationForRule, getArchitectureSummary };
+Respond to the user's request concisely. If you need more information, ask for it.
+
+**User's Request:**
+"${userPrompt}"
+
+**Your Response (as MiseMentorAgent):**
+`;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: prompt,
+    });
+
+    return response.text;
+  } catch (error) {
+    console.error("Error sending agent prompt:", error);
+    throw new Error("Failed to communicate with the MiseMentorAgent.");
+  }
+};
+
+
+export { getExplanationForRule, getArchitectureSummary, sendAgentPrompt };
