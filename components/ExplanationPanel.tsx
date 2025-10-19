@@ -1,13 +1,12 @@
-
 import React from 'react';
-import { Rule } from '../types';
-import DocumentIcon from './icons/DocumentIcon';
 
 interface ExplanationPanelProps {
-  selectedRule: Rule | null;
-  explanation: string;
+  title: string;
+  subtitle: string | null;
+  content: string;
   isLoading: boolean;
   error: string | null;
+  placeholderContent?: React.ReactNode;
 }
 
 const LoadingSpinner: React.FC = () => (
@@ -18,26 +17,16 @@ const LoadingSpinner: React.FC = () => (
   </div>
 );
 
-const Placeholder: React.FC = () => (
-  <div className="text-center text-gray-500 flex flex-col items-center justify-center h-full">
-    <DocumentIcon className="w-16 h-16 mb-4 text-gray-700" />
-    <h3 className="text-xl font-semibold text-gray-400">Select a Rule</h3>
-    <p>Choose a rule from the list to see an AI-powered explanation.</p>
-  </div>
-);
 
-const ExplanationPanel: React.FC<ExplanationPanelProps> = ({ selectedRule, explanation, isLoading, error }) => {
+const ExplanationPanel: React.FC<ExplanationPanelProps> = ({ title, subtitle, content, isLoading, error, placeholderContent }) => {
+  const hasContent = !isLoading && !error && content;
+  const showPlaceholder = !isLoading && !error && !content && placeholderContent;
+
   return (
-    <div className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 sticky top-24 h-[calc(100vh-7rem)]">
+    <div className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 sticky top-24 h-[calc(100vh-10.5rem)]">
        <div className="p-6 border-b border-gray-700 h-24">
-         {selectedRule ? (
-            <>
-                <h2 className="text-2xl font-bold text-white leading-tight">AI Explanation</h2>
-                <p className="text-cyan-400 truncate">{selectedRule.id} - {selectedRule.title}</p>
-            </>
-         ) : (
-             <h2 className="text-2xl font-bold text-white flex items-center h-full">AI Explanation</h2>
-         )}
+        <h2 className="text-2xl font-bold text-white leading-tight">{title}</h2>
+        {subtitle && <p className="text-cyan-400 truncate">{subtitle}</p>}
        </div>
       <div className="p-6 overflow-y-auto h-[calc(100%-6rem)]">
         {isLoading && (
@@ -51,10 +40,10 @@ const ExplanationPanel: React.FC<ExplanationPanelProps> = ({ selectedRule, expla
             <p>{error}</p>
           </div>
         )}
-        {!isLoading && !error && !selectedRule && <Placeholder />}
-        {!isLoading && !error && explanation && (
+        {showPlaceholder && placeholderContent}
+        {hasContent && (
           <div className="prose prose-invert prose-p:text-gray-300 prose-strong:text-white prose-headings:text-cyan-400 whitespace-pre-wrap font-sans text-base leading-relaxed">
-            {explanation}
+            {content}
           </div>
         )}
       </div>

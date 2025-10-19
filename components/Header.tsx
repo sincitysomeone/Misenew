@@ -1,4 +1,3 @@
-
 import React from 'react';
 import DocumentIcon from './icons/DocumentIcon';
 
@@ -9,9 +8,12 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
             <DocumentIcon className="h-8 w-8 text-cyan-400" />
-            <h1 className="text-xl font-bold text-gray-100 tracking-tight">
-              MISE Project Rulebook <span className="text-cyan-400">AI Explainer</span>
-            </h1>
+            <div>
+              <h1 className="text-xl font-bold text-gray-100 tracking-tight">
+                Mise Framework Rulebook
+              </h1>
+              <p className="text-xs text-cyan-400/80 -mt-0.5">Powered by MiseMentorAgent</p>
+            </div>
           </div>
         </div>
       </div>
